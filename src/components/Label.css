@@ -1,0 +1,15 @@
+.label {
+	color: #37352f; /* Notion’s dark gray text */
+	font-size: 14px;
+	font-weight: 500;
+	padding: 6px 12px;
+	border-radius: 8px; /* Rounded corners */
+	border: 1px solid #e1e1e1; /* Subtle border */
+	white-space: nowrap; /* Prevents breaking */
+	transition: background-color 0.2s ease;
+}
+  
+
+.label:hover {
+	background-color: #ececec; /* Slightly darker on hover */
+}

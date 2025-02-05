@@ -1,0 +1,13 @@
+/* Card Style */
+.card {
+	background: #FFFFFF;
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+  }
+  
+  .card h2, .card h3 {
+	margin-top: 0;
+  }
+  
