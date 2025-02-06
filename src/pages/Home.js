@@ -7,16 +7,18 @@ import pin from "../images/pin.png";
 import book from "../images/book.png";
 import download from "../images/download.png";
 import resume from "../docs/Kazuhide_Tony_Lee_Resume_Jan.pdf";
+import Link from "../components/Link";
 
 function Home(){
-	return (<div className="content">
+	return (
+  <div>
         <Card>
           <h2 className="aboutme">About Me!</h2>
           <div className="profile">
           <img className="headshot" src={headshot} alt="Tony's headshot" />
           <p>
             Hello, and welcome to my website!  
-            My name is <p className="highlight"><strong>Tony</strong></p>, and I’m a Computer Science student at the <a href="https://umich.edu/" className="styled_link">University of Michigan</a>.  
+            My name is <p className="highlight"><strong>Tony</strong></p>, and I’m a Computer Science student at the <Link ref={"https://umich.edu/"} text="University of Michigan"/>.  
 
             <br /><br />
             My journey into programming started later than most, but that didn’t stop me from diving headfirst into hands-on experiences. Through internships, part-time jobs, and personal projects, I’ve built both **technical expertise** and **strong teamwork skills**—fueling my passion for developing solutions to real-world problems.  
@@ -75,8 +77,15 @@ function Home(){
             <Label color={"#f4e0e9"} text={"Human-Centerd Software Design and Development"}></Label>
           </ul>
         </Card>
-
         <Card>
+        <h3><Icon src={pin} alt={"pin icon"}/>Contact & Links</h3>
+          <div><strong>LinkedIn:</strong> <Link ref={"https://www.linkedin.com/in/tonykazuhidelee/"} text={"https://www.linkedin.com/in/tonykazuhidelee/"}></Link></div>
+          <div><strong>Github:</strong> <Link ref={"https://github.com/kazuhidelee"} text={"https://github.com/kazuhidelee"}></Link></div>
+          <div><strong>Email:</strong> <Link ref={"tylee2715@gmail.com"} text={"tylee2715@gmail.com"}></Link></div>
+          
+        </Card>
+        <Card>
+        <h3><Icon src={pin} alt={"pin icon"}/>Resume</h3>
           <div className="resume-container">
             <a href={resume} download="Tony_Lee_Resume.pdf" className="resume-button">
             <Icon src={download} alt={"doc icon"}/>   Download Resume

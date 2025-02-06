@@ -10,12 +10,14 @@ function App() {
   return (
     <div className="container">
       <Sidebar/>
-      <Routes>
-        <Route path="/" element={<Home />} /> 
-        <Route path="/projects" element={<Project />} />
-        <Route path="/work" element={<Work />} />
-        <Route path="/art" element={<Art />} />
-      </Routes>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Project />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/art" element={<Art />} />
+        </Routes>
+      </div>
       
     </div>
   );

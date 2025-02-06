@@ -1,0 +1,34 @@
+
+
+.link {
+	color: #b4b4b4; /* Dark gray, similar to Notion's text color */
+	text-decoration: none; /* Remove default underline */
+	font-weight: 500; /* Slightly bold */
+	position: relative;
+	transition: color 0.2s ease-in-out;
+	display: inline-block;
+    margin-bottom: 8px; /* Optional: Adds spacing between links */
+  }
+
+  
+  .link::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px; /* Spacing below the text */
+	width: 100%;
+	height: 1.5px;
+	background-color: #b4b4b4; /* Underline color */
+	transform: scaleX(0); /* Start invisible */
+	transition: transform 0.2s ease-in-out;
+	transform-origin: left;
+  }
+  
+  .link:hover {
+	color: #808080; /* Slightly darker text on hover */
+  }
+  
+  .link:hover::after {
+	transform: scaleX(1); /* Expand underline on hover */
+  }
+  

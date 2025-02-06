@@ -1,0 +1,11 @@
+.table_container {
+	display: flex;
+	justify-content: center; /* Center horizontally */
+	background-color: #ffffff;
+  }
+  
+.table {
+    width: 100%; /* Ensure the table fills the parent container */
+    height: auto; /* Adjust height automatically based on content */
+    text-align: center;
+}
