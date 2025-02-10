@@ -1,0 +1,8 @@
+.gallery {
+	display: flex;
+	flex-wrap: wrap; /* Allows wrapping when space runs out */
+	gap: 20px; /* Adds spacing between Polaroids */
+	justify-content: center; /* Centers items if fewer Polaroids */
+	padding: 20px;
+  }
+  

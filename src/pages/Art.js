@@ -1,6 +1,40 @@
 import "./Art.css";
+import React from 'react';
+import Card from "../components/Card";
+import Polaroid from "../components/Polaroid";
+import suzi1 from "../images/art/suzi1.JPG";
+import suzi2 from "../images/art/suzi2.JPG";
+import ashin from "../images/art/ashin.jpeg";
+import hyerin from "../images/art/hyerin.jpeg";
+import jihyun from "../images/art/jihyun.jpeg";
+import lights from "../images/art/lights.jpeg";
+import man from "../images/art/man.jpeg";
+import practice from "../images/art/practice.jpeg";
+import yerin from "../images/art/yerin.jpeg";
 
 function Art(){
-	return(<div>Art</div> );
+	return(
+	<div>
+		<Card>
+		<h2 className="myproject">My Art!</h2>
+			<p>Welcome to my art portfolio! Welcome to my art portfolio!
+			Welcome to my art portfolio!
+			Welcome to my art portfolio!
+			Welcome to my art portfolio!Welcome to my art portfolio!
+			</p>
+
+		</Card>
+		<div className="gallery">
+			<Polaroid src={suzi1} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={suzi2} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={ashin} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={hyerin} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={jihyun} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={lights} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={man} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={practice} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={yerin} alt={"suzi"} text={"text"}></Polaroid>
+		</div>
+	</div> );
 }
 export default Art;

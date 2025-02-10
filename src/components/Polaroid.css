@@ -1,0 +1,29 @@
+.polaroid {
+	width: 250px;
+	background: white;
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	font-family: "Cursive", sans-serif; /* Notion-like aesthetic */
+	transition: transform 0.2s ease-in-out;
+  }
+  
+  .polaroid:hover {
+	transform: scale(1.05);
+  }
+  
+  .polaroid-img {
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+	filter: brightness(95%);
+  }
+  
+  .caption {
+	margin-top: 10px;
+	font-size: 14px;
+	color: #333;
+	font-weight: bold;
+  }
+  
