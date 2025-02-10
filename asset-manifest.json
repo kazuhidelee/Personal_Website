@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Personal_Website/static/css/main.f64af4b9.css",
-    "main.js": "/Personal_Website/static/js/main.66df91e3.js",
+    "main.css": "/Personal_Website/static/css/main.9baf1425.css",
+    "main.js": "/Personal_Website/static/js/main.ba7ca2af.js",
     "static/js/488.352fd880.chunk.js": "/Personal_Website/static/js/488.352fd880.chunk.js",
     "static/media/yerin.jpeg": "/Personal_Website/static/media/yerin.d4ff0f891ff88d33438a.jpeg",
     "static/media/hyerin.jpeg": "/Personal_Website/static/media/hyerin.3280a70ceec4bd570a5e.jpeg",
@@ -14,6 +14,9 @@
     "static/media/suzi2.JPG": "/Personal_Website/static/media/suzi2.833ac337774f16993f81.JPG",
     "static/media/Kazuhide_Tony_Lee_Resume_Jan.pdf": "/Personal_Website/static/media/Kazuhide_Tony_Lee_Resume_Jan.cfd0711f67c976fc945a.pdf",
     "static/media/headshot.png": "/Personal_Website/static/media/headshot.e4d59bc29e79cc33d28d.png",
+    "static/media/laptop.png": "/Personal_Website/static/media/laptop.b571e8b20728d2650869.png",
+    "static/media/work.png": "/Personal_Website/static/media/work.6626e59761366485de25.png",
+    "static/media/artist.png": "/Personal_Website/static/media/artist.63c0a13d15402b77e07e.png",
     "static/media/lightbolb.png": "/Personal_Website/static/media/lightbolb.c0b1dc7b3748e72620ed.png",
     "static/media/f5.png": "/Personal_Website/static/media/f5.656fa1cabdd8903696c7.png",
     "static/media/bubble.png": "/Personal_Website/static/media/bubble.2ec77c598dd2fefef30b.png",
@@ -31,12 +34,12 @@
     "static/media/right.png": "/Personal_Website/static/media/right.dbf39637d006718e63fd.png",
     "static/media/left.png": "/Personal_Website/static/media/left.8da7dda06b3dab40fa68.png",
     "index.html": "/Personal_Website/index.html",
-    "main.f64af4b9.css.map": "/Personal_Website/static/css/main.f64af4b9.css.map",
-    "main.66df91e3.js.map": "/Personal_Website/static/js/main.66df91e3.js.map",
+    "main.9baf1425.css.map": "/Personal_Website/static/css/main.9baf1425.css.map",
+    "main.ba7ca2af.js.map": "/Personal_Website/static/js/main.ba7ca2af.js.map",
     "488.352fd880.chunk.js.map": "/Personal_Website/static/js/488.352fd880.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f64af4b9.css",
-    "static/js/main.66df91e3.js"
+    "static/css/main.9baf1425.css",
+    "static/js/main.ba7ca2af.js"
   ]
 }
