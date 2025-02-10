@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Personal_Website/static/css/main.eb3d00ab.css",
-    "main.js": "/Personal_Website/static/js/main.36d08e45.js",
+    "main.js": "/Personal_Website/static/js/main.f98c5be1.js",
     "static/js/488.352fd880.chunk.js": "/Personal_Website/static/js/488.352fd880.chunk.js",
     "static/media/Kazuhide_Tony_Lee_Resume_Jan.pdf": "/Personal_Website/static/media/Kazuhide_Tony_Lee_Resume_Jan.cfd0711f67c976fc945a.pdf",
     "static/media/headshot.png": "/Personal_Website/static/media/headshot.e4d59bc29e79cc33d28d.png",
@@ -23,11 +23,11 @@
     "static/media/left.png": "/Personal_Website/static/media/left.8da7dda06b3dab40fa68.png",
     "index.html": "/Personal_Website/index.html",
     "main.eb3d00ab.css.map": "/Personal_Website/static/css/main.eb3d00ab.css.map",
-    "main.36d08e45.js.map": "/Personal_Website/static/js/main.36d08e45.js.map",
+    "main.f98c5be1.js.map": "/Personal_Website/static/js/main.f98c5be1.js.map",
     "488.352fd880.chunk.js.map": "/Personal_Website/static/js/488.352fd880.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eb3d00ab.css",
-    "static/js/main.36d08e45.js"
+    "static/js/main.f98c5be1.js"
   ]
 }
