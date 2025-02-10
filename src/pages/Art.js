@@ -11,18 +11,20 @@ import lights from "../images/art/lights.jpeg";
 import man from "../images/art/man.jpeg";
 import practice from "../images/art/practice.jpeg";
 import yerin from "../images/art/yerin.jpeg";
-
+import artist from "../images/artist.png";
 function Art(){
 	return(
 	<div>
 		<Card>
 		<h2 className="myproject">My Art!</h2>
-			<p>Welcome to my art portfolio! Welcome to my art portfolio!
-			Welcome to my art portfolio!
-			Welcome to my art portfolio!
-			Welcome to my art portfolio!Welcome to my art portfolio!
-			</p>
-
+		<div className="profile">
+				<p>Welcome to my art portfolio! Welcome to my art portfolio!
+				Welcome to my art portfolio!
+				Welcome to my art portfolio!
+				Welcome to my art portfolio!Welcome to my art portfolio!
+				</p>
+			<img className="illustration" src={artist} alt="studying" />
+		</div>
 		</Card>
 		<div className="gallery">
 			<Polaroid src={suzi1} alt={"suzi"} text={"text"}></Polaroid>

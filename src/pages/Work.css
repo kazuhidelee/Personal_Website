@@ -21,3 +21,12 @@
     margin-bottom: 12px; /* Adjust the spacing as needed */
 	padding-right: 15px;
 }
+
+.profile {
+	display: flex;  /* Use flexbox */
+	align-items: center;  /* Align items vertically */
+	gap: 20px;  /* Add space between image and text */
+  }
+ .illustration{
+	align-items: right;
+ }

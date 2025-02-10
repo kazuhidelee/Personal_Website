@@ -1,6 +1,7 @@
 import "./Project.css";
 import Table from "../components/Table";
 import Card from "../components/Card";
+import laptop from "../images/laptop.png";
 
 function Project(){
 	return(
@@ -13,7 +14,7 @@ function Project(){
 					Below is the collection of projects I've worked on during my academic journey!  
 					Below is the collection of projects I've worked on during my academic journey!  
 				</p>
-				{/* <img className="illustration" src={Pj} alt="studying" /> */}
+				<img className="illustration" src={laptop} alt="studying" />
 			</div>
 		</Card>
 		<Table></Table>

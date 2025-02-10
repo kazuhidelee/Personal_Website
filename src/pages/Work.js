@@ -8,7 +8,7 @@ import web from "../images/web.png";
 import bubble from "../images/bubble.png";
 import dfg from "../images/dfg.png";
 import Link from "../components/Link";
-
+import work from "../images/work.png";
 function Work(){
 	return(
 	<div>
@@ -17,7 +17,10 @@ function Work(){
 			<div className="profile">
 				<p>
 					Here are some of the places I've worked at and the roles I've taken on!  
+					Here are some of the places I've worked at and the roles I've taken on!  
+					Here are some of the places I've worked at and the roles I've taken on!  
 				</p>
+				<img className="illustration" src={work} alt="work" />
 			</div>
 		</Card>
 		<Card>
