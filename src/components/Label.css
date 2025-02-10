@@ -1,8 +1,8 @@
 .label {
 	color: #37352f; /* Notion’s dark gray text */
 	font-size: 14px;
-	font-weight: 500;
-	padding: 6px 12px;
+	font-weight: 580;
+	padding: 4px 10px;
 	border-radius: 8px; /* Rounded corners */
 	border: 1px solid #e1e1e1; /* Subtle border */
 	white-space: nowrap; /* Prevents breaking */

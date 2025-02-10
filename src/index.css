@@ -5,9 +5,6 @@ body {
   margin: 0;
   display: flex;
   height: 100vh;
+  cursor: url('./images/cursor.png') 16 16, auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}

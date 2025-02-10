@@ -5,3 +5,16 @@
 	font-size: 24px;
 	font-weight: bold;
 }
+
+.illustration
+{
+  width: 40%;
+  height: 40%;
+
+}
+
+.profile {
+	display: flex;  /* Use flexbox */
+	align-items: center;  /* Align items vertically */
+	gap: 20px;  /* Add space between image and text */
+  }

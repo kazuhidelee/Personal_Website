@@ -18,21 +18,43 @@ function Home(){
           <img className="headshot" src={headshot} alt="Tony's headshot" />
           <p>
             Hello, and welcome to my website!  
-            My name is <p className="highlight"><strong>Tony</strong></p>, and I’m a Computer Science student at the <Link ref={"https://umich.edu/"} text="University of Michigan"/>.  
+            My name is <p className="highlight"><strong>Tony</strong></p>, and I’m a senior Computer Science major at the <Link ref={"https://umich.edu/"} text="University of Michigan" color={"#03274b"} bold={true}/>.  
 
             <br /><br />
-            My journey into programming started later than most, but that didn’t stop me from diving headfirst into hands-on experiences. Through internships, part-time jobs, and personal projects, I’ve built both **technical expertise** and **strong teamwork skills**—fueling my passion for developing solutions to real-world problems.  
+            Although I started my journey as a programmer relatively late, 
+            I was able to get involved in a lot of hands-on experience through internships, part-time jobs, and projects 
+            where I was able to gain both technical skills and teamworks, 
+            and become passionate about building solutions to real world problems.   
 
             <br /><br />
-            Beyond coding, my multicultural background—growing up in China, Korea, and Japan—has shaped my adaptability and given me a **diverse perspective** on problem-solving. This ability to navigate different environments and viewpoints is something I bring to every team and project.  
+            Beyond coding, my unique experience of growing up across countries like China, Korea, and Japan has shaped my adaptability in different environments,
+            and also given me an ability to view situations in diverse perspectives, 
+            which I believe will be a great asset and skill I can bring to the table.
 
             <br /><br />
-            Outside of tech, I love curating **music playlists** and expressing creativity through **art** 🎨.  
+            For hobbies, I enjoy making music playlists and art! 🎨.  
           </p>
           </div>
         </Card>
 
+        <Card>
+        <h3><Icon src={pin} alt={"pin icon"}/>Education</h3>
+          <p className="edu"><strong>University of Michigan - Ann Arbor</strong></p>
+          <ul className="notion-labels">
+            <Label text={"2023-2025"} color={"#edf2ec"}></Label>
+            <Label text={"Bachelors of Science"} color={"#fbecdd"}></Label>
+            <Label text={"Computer Science"} color={"#e8f2f9"}></Label>
+          </ul>
+          
 
+          <p><strong>University of California - Davis</strong></p>
+          <ul className="notion-labels">
+            <Label text={"2021-2023"} color={"#edf2ec"}></Label>
+            <Label text={"Bachelors of Science"} color={"#fbecdd"}></Label>
+            <Label text={"Computer Science"} color={"#e8f2f9"}></Label>
+          </ul>
+          
+        </Card>
         
         <Card>
           <h3><Icon src={pin} alt={"pin icon"}/>Technical Skills</h3>
@@ -61,7 +83,7 @@ function Home(){
             <Label color={"#d2e4ef"} text={"GCP"}></Label>
           </ul>
         </Card>
-
+        
         <Card>
           <h3><Icon src={book} alt={"book icon"}/>Relevant Courses</h3>
           <ul className="notion-labels">
@@ -73,10 +95,25 @@ function Home(){
             <Label color={"#f4e0e9"} text={"Artificial Intelligent"}></Label>
             <Label color={"#f4e0e9"} text={"Computer Vision"}></Label>
             <Label color={"#f4e0e9"} text={"Software Engineering"}></Label>
-            <Label color={"#f4e0e9"} text={"Foundations of Computer Science"}></Label>
+            <Label color={"#f4e0e9"} text={"Computer Science Theory"}></Label>
             <Label color={"#f4e0e9"} text={"Human-Centerd Software Design and Development"}></Label>
           </ul>
         </Card>
+
+        <Card>
+        <h3><Icon src={pin} alt={"pin icon"}/>Interests</h3>
+          <ul className="notion-labels">
+            <Label text={"Backend Development"}></Label>
+            <Label text={"Full-stack Development"}></Label>
+            <Label text={"API"}></Label>
+            <Label text={"Networking"}></Label>
+            <Label text={"Distributed Systems"}></Label>
+            <Label text={"Cloud Computing"}></Label>
+            <Label text={"UI/UX"}></Label>
+            <Label text={"Web Development"}></Label>
+          </ul>
+        </Card>
+
         <Card>
         <h3><Icon src={pin} alt={"pin icon"}/>Contact & Links</h3>
           <div><strong>LinkedIn:</strong> <Link ref={"https://www.linkedin.com/in/tonykazuhidelee/"} text={"https://www.linkedin.com/in/tonykazuhidelee/"}></Link></div>

@@ -1,9 +1,6 @@
 
-
 .link {
-	color: #b4b4b4; /* Dark gray, similar to Notion's text color */
 	text-decoration: none; /* Remove default underline */
-	font-weight: 500; /* Slightly bold */
 	position: relative;
 	transition: color 0.2s ease-in-out;
 	display: inline-block;
@@ -26,6 +23,7 @@
   
   .link:hover {
 	color: #808080; /* Slightly darker text on hover */
+	cursor: url('../images/cursor.png') 16 16, auto;
   }
   
   .link:hover::after {

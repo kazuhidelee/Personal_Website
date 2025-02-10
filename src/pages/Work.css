@@ -1,0 +1,23 @@
+.workexp {
+	display: inline;
+	background: linear-gradient(transparent 50%, #ffeb3b 50%);
+	padding: 4px 8px;
+	font-size: 24px;
+	font-weight: bold;
+	/* transform: skew(-15deg);
+	z-index: -1; */
+  }
+
+  .notion-labels {
+	display: flex;  /* Arrange labels in a row */
+	flex-wrap: wrap; /* Wrap to the next line if needed */
+	gap: 8px; /* Space between labels */
+	list-style: none; /* Remove bullets */
+	padding: 0;
+	margin: 0;
+  }
+
+  .bulletpoints li {
+    margin-bottom: 12px; /* Adjust the spacing as needed */
+	padding-right: 15px;
+}
