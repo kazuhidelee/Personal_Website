@@ -19,11 +19,16 @@
 	border-radius: 5px;
 	filter: brightness(95%);
   }
-  
+  .title {
+	margin-top: 30px;
+	font-size: 20px;
+	color: #333;
+	font-weight: bold;
+  }
+
   .caption {
 	margin-top: 10px;
 	font-size: 14px;
 	color: #333;
-	font-weight: bold;
   }
   

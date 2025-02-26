@@ -11,6 +11,7 @@ import lights from "../images/art/lights.jpeg";
 import man from "../images/art/man.jpeg";
 import practice from "../images/art/practice.jpeg";
 import yerin from "../images/art/yerin.jpeg";
+import dapne from "../images/art/daphne.jpeg";
 import artist from "../images/artist.png";
 import Link from "../components/Link";
 function Art(){
@@ -35,15 +36,16 @@ function Art(){
 		</div>
 		</Card>
 		<div className="gallery">
-			<Polaroid src={suzi1} alt={"suzi"} text={"Korean actress Suzi from a scene from the K-drama Duna!"}></Polaroid>
-			<Polaroid src={suzi2} alt={"suzi"} text={"Korean actress Suzi from a scene from the K-drama Duna!"}></Polaroid>
-			<Polaroid src={ashin} alt={"ashin"} text={"Korean actress Jeon Ji-Hyun in Kingdom: Ashin of the North"}></Polaroid>
-			<Polaroid src={hyerin} alt={"hyerin"} text={"Hyerin from the K-pop band New Jeans in their music video teaser"}></Polaroid>
-			<Polaroid src={jihyun} alt={"jihyun"} text={"Korean actress Jeon Ji-Hyun from one of her earlier films"}></Polaroid>
-			<Polaroid src={lights} alt={"lights"} text={"A drawing where I was praticing color and various lightings"}></Polaroid>
-			<Polaroid src={man} alt={"man"} text={"A drawing where I was practicing draing hair and shadows"}></Polaroid>
-			<Polaroid src={practice} alt={"practice"} text={"The first portrait drawin I've made on digital"}></Polaroid>
-			<Polaroid src={yerin} alt={"yerin"} text={"Yerin from her album cover 'Love, Yerin' "}></Polaroid>
+			<Polaroid src={suzi1} alt={"suzi"} title={"suzi"} text={"Korean actress Suzi from a scene from the K-drama Duna!"}></Polaroid>
+			<Polaroid src={suzi2} alt={"suzi"} title={"suzi"} text={"Korean actress Suzi from a scene from the K-drama Duna!"}></Polaroid>
+			<Polaroid src={dapne} alt={"daphne"} title={"Daphne Bridgerton"} text={"Daphne from the Netflix series Bridgerton"}></Polaroid>
+			<Polaroid src={ashin} alt={"ashin"} title={"Ashin from the North"} text={"Korean actress Jeon Ji-Hyun in Kingdom: Ashin of the North"}></Polaroid>
+			<Polaroid src={hyerin} alt={"hyerin"} title={"hyerin"} text={"Hyerin from the K-pop band New Jeans in their music video teaser"}></Polaroid>
+			<Polaroid src={jihyun} alt={"jihyun"} title={"jihyun"} text={"Korean actress Jeon Ji-Hyun from one of her earlier films"}></Polaroid>
+			<Polaroid src={lights} alt={"lights"} title={"lights"} text={"A drawing where I was praticing color and various lightings"}></Polaroid>
+			<Polaroid src={man} alt={"man"} title={"untitled"} text={"A drawing where I was practicing draing hair and shadows"}></Polaroid>
+			<Polaroid src={practice} alt={"practice"} title={"untitled"} text={"The first portrait drawin I've made on digital"}></Polaroid>
+			<Polaroid src={yerin} alt={"yerin"} title={"Love, yerin"} text={"Yerin from her album cover 'Love, Yerin' "}></Polaroid>
 		</div>
 	</div> );
 }
