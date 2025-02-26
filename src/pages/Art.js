@@ -29,13 +29,13 @@ function Art(){
 		<div className="gallery">
 			<Polaroid src={suzi1} alt={"suzi"} text={"text"}></Polaroid>
 			<Polaroid src={suzi2} alt={"suzi"} text={"text"}></Polaroid>
-			<Polaroid src={ashin} alt={"suzi"} text={"text"}></Polaroid>
-			<Polaroid src={hyerin} alt={"suzi"} text={"text"}></Polaroid>
-			<Polaroid src={jihyun} alt={"suzi"} text={"text"}></Polaroid>
-			<Polaroid src={lights} alt={"suzi"} text={"text"}></Polaroid>
-			<Polaroid src={man} alt={"suzi"} text={"text"}></Polaroid>
-			<Polaroid src={practice} alt={"suzi"} text={"text"}></Polaroid>
-			<Polaroid src={yerin} alt={"suzi"} text={"text"}></Polaroid>
+			<Polaroid src={ashin} alt={"ashin"} text={"text"}></Polaroid>
+			<Polaroid src={hyerin} alt={"hyerin"} text={"text"}></Polaroid>
+			<Polaroid src={jihyun} alt={"jihyun"} text={"text"}></Polaroid>
+			<Polaroid src={lights} alt={"lights"} text={"text"}></Polaroid>
+			<Polaroid src={man} alt={"man"} text={"text"}></Polaroid>
+			<Polaroid src={practice} alt={"practice"} text={"text"}></Polaroid>
+			<Polaroid src={yerin} alt={"yerin"} text={"text"}></Polaroid>
 		</div>
 	</div> );
 }
