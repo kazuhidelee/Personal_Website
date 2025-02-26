@@ -16,9 +16,12 @@ function Work(){
 			<h2 className="workexp">Work Experience!</h2>
 			<div className="profile">
 				<p>
-					Here are some of the places I've worked at and the roles I've taken on!  
-					Here are some of the places I've worked at and the roles I've taken on!  
-					Here are some of the places I've worked at and the roles I've taken on!  
+					Throughout my software engeering journey, I’ve taken on diverse roles in software development, product management, and academic research.
+					<br /><br />
+					From working on cutting-edge networking technologies to leading meaningful projects that is impacting the other side of the globe,  
+					I’ve gained a lot ofhands-on experience in building scalable softwares and collaborating with diverse teams.  
+					<br /><br />
+					Below are some of the places I’ve worked and the contributions I’ve made!
 				</p>
 				<img className="illustration" src={work} alt="work" />
 			</div>

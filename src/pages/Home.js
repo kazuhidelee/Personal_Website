@@ -85,6 +85,16 @@ function Home(){
         </Card>
         
         <Card>
+        <h3><Icon src={pin} alt={"pin icon"}/>Language Skills</h3>
+          <ul className="notion-labels">
+            <Label color={"#f1e0e9"} text={"Korean - Native"}></Label>
+            <Label color={"#deebef"} text={"Madarin - Native"}></Label>
+            <Label color={"#f8e9df"} text={"Japanese - Fluent"}></Label>
+            <Label color={"#faf3db"} text={"English - Fluent"}></Label>
+          </ul>
+        </Card>
+
+        <Card>
           <h3><Icon src={book} alt={"book icon"}/>Relevant Courses</h3>
           <ul className="notion-labels">
             <Label color={"#f4e0e9"} text={"Data Structure and Algorithms"}></Label>
@@ -115,11 +125,20 @@ function Home(){
         </Card>
 
         <Card>
+        <h3><Icon src={pin} alt={"pin icon"}/>Campus Involvement</h3>
+          <ul className="notion-labels">
+            <Label color={"#e7e4f1"} text={"Society of Asian Scientists and Engineers - Professional Chair"}></Label>
+            <Label color={"#dfedea"} text={"Tech for Social Good - Tech Lead"}></Label>
+            <Label color={"#deebef"} text={"MDraw - Social Meida Chair"}></Label>
+            <Label color={"#f1e0e9"} text={"Google Developer Student Club"}></Label>
+          </ul>
+        </Card>
+
+        <Card>
         <h3><Icon src={pin} alt={"pin icon"}/>Contact & Links</h3>
           <div><strong>LinkedIn:</strong> <Link ref={"https://www.linkedin.com/in/tonykazuhidelee/"} text={"https://www.linkedin.com/in/tonykazuhidelee/"}></Link></div>
           <div><strong>Github:</strong> <Link ref={"https://github.com/kazuhidelee"} text={"https://github.com/kazuhidelee"}></Link></div>
           <div><strong>Email:</strong> <Link ref={"tylee2715@gmail.com"} text={"tylee2715@gmail.com"}></Link></div>
-          
         </Card>
         <Card>
         <h3><Icon src={pin} alt={"pin icon"}/>Resume</h3>
