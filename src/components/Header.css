@@ -7,35 +7,35 @@
 }
   
 .row-item1 {
-  flex: 1.5; /* Row 1 takes equal space as Row 5 */
+  flex: 1.5;
   padding: 8px;
   text-align: left;
   color: #333;
 }
 
 .row-item2 {
-  flex: 2; /* Row 2 and 4 take the same space */
+  flex: 2;
   padding: 8px;
   text-align: left;
   color: #333;
 }
 
 .row-item3 {
-  flex: 4; /* Row 3 takes the most space */
+  flex: 5;
   padding: 8px;
   text-align: left;
   color: #333;
 }
 
 .row-item4 {
-  flex: 2; /* Row 4 takes the same space as Row 2 */
+  flex: 1;
   padding: 8px;
   text-align: left;
   color: #333;
 }
 
 .row-item5 {
-  flex: 1; /* Row 5 takes equal space as Row 1 */
+  flex: 1; 
   padding: 8px;
   text-align: left;
   color: #333;

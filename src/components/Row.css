@@ -7,28 +7,33 @@
 }
   
 .row-item1 {
+    flex: 1.5;
 	display: flex;
-    align-items: center; /* Centers label vertically */
+    align-items: center; 
 }
 
 .row-item2 {
+    flex: 2;
     display: flex;
-    align-items: center; /* Centers label vertically */
+    align-items: center;
 }
 
 .row-item3 {
+    flex: 5;
 	display: flex;
-    align-items: center; /* Centers label vertically */
+    align-items: center; 
 }
 
 .row-item4 {
+    flex: 0.5;
 	display: flex;
-    align-items: center; /* Centers label vertically */
+    align-items: center; 
 }
 
 .row-item5 {
+    flex: 1;
     display: flex;
-    align-items: center; /* Centers label vertically */
+    align-items: center; 
 }
 
 
