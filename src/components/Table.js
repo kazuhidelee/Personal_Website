@@ -1,29 +1,118 @@
 import "./Table.css";
-import React from 'react';
+import React, { useState } from 'react';
 import Row from "./Row";
 import Header from "./Header";
+import Modal from "./Modal";
+import { categoryColors, types, projects } from "../data";
 
 function Table() {
+  
+  // For tabs
+  const [tab, setTab] = useState("all");
+
+  // For multi-tag filters
+  const [filters, setFilters] = useState([]);
+
+  const handleTabClick = (newTab) => {
+    setTab(newTab);
+    setFilters([]); // reset filters on tab switch
+  };
+
+  // For modal
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleRowClick = (project) => {
+    setSelectedProject(project);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+  };
+
+  // Filtering logic
+  const filteredProjects = projects.filter((proj) => {
+    if (tab === "all") return true;
+    if (tab === "category" && filters.length > 0) {
+      return filters.includes(proj.category);
+    }
+    if (tab === "type" && filters.length > 0) {
+      return filters.includes(proj.type);
+    }
+    return true;
+  });
+
+  const categories = [...new Set(projects.map((p) => p.category))];
+  const types = [...new Set(projects.map((p) => p.type))];
+
+
   return (
     <div className="table_container">
-      <div className="table">
-          <Header />
-          <Row projectName={"Personal Website"} category={"Web Development"} description={"The porfolio website you are currently viewing!"} date={"2025"} link={"link"}/>
-          <Row projectName={"Bubble! - Learn Science"} category={"Web Development"} description={"A web application that aids students with lower resource backgrounds to comprehending scientific research papers through interactive learning experiences"} date={"2023"} link={"link"}/>
-          <Row projectName={"Arbor Advisor"} category={"Web Development"} description={"An user-centric website aimed to condense resources for international, out of state, and first generation students in the Washtenaw County area focused on accommodating to various necessities such as groceries and transportation"} date={"2023"} link={"link"}/>
-          <Row projectName={"AI Chatbot"} category={"Web Development"} description={"An AI chatbot website that uses the OpenAI API key"} date={"2024"} link={"link"}/>
-          <Row projectName={"Windrose API"} category={"Web Development"} description={"A public API that fetches historical windose data from Southeast Michigan region; Used in the air quality map research project"} date={"2024"} link={"link"}/>
-          <Row projectName={"Concordia"} category={"Mobile Development"} description={"A mobile application for 200+ global volunteers to streamline support efforts, impacting 2.8 million people in the Dominican Republic"} date={"2024"} link={"link"}/>
-          <Row projectName={"Search Engine"} category={"Distributed System"} description={"A scalable search engine similar to Google and Bing using MapReduce for parallel data processing, incorporating tf-idf and PageRank algorithms to optimize information retrieval and link analysis"} date={"2024"} link={"link"}/>
-          <Row projectName={"Mapreduce paradigm"} category={"Distributed System"} description={"A single machine, multi-process, multi-threaded server that executes user-submitted MapReduce Jobs"} date={"2024"} link={"link"}/>
-          <Row projectName={"Thread Library"} category={"Operating System"} description={"Implementation of a kernel level thread library similar to the STL library in C++; includes cpu, threads, mutex, and cv classes"} date={"2025"} link={"link"}/>
-          <Row projectName={"BW Colorization"} category={"Computer Vision"} description={"An TensorFlow image colorization model inspired by the paper Colorful image Colorization by Zhang et al. "} date={"2024"} link={"link"}/>
-          <Row projectName={"Mission Valentine"} category={"Game Development"} description={"A Valentine themed mini game that inlcudes dodging game machanisms and a lot of cute pixel arts drew by me :-)"} date={"2025"} link={"link"}/>
-          <Row projectName={"Monte Carlo Tree Search AI"} category={"Artificial Intelligent"} description={"Implemation of the Monte Carlo Tree Search Algorithm part of the AlphaZero in the context of the game 'Othello'"} date={"2024"} link={"link"}/>
-          <Row projectName={"Image Classifier"} category={"Artificial Intelligent"} description={"A PyTorch convolutaional neural network that is aimed to classify images"} date={"2024"} link={"link"}/>
-          <Row projectName={"Min-Max Game Agent"} category={"Artificial Intelligent"} description={"A Tic-Tac-Toe and Connect-4 AI agent using the minimax with alpha-beta pruning algorithm"} date={"2024"} link={"link"}/>
-          <Row projectName={"Maze Search Algorithms"} category={"Artificial Intelligent"} description={"An AI agent that searches a path in a maze using BFS, DFS, UCS, A-start search algorithms"} date={"2024"} link={"link"}/>
+      <div className="tabs_container">
+        <div className="tabs">
+          <button className={tab === "all" ? "active" : ""} onClick={() => handleTabClick("all")}>All Projects</button>
+          <button className={tab === "category" ? "active" : ""} onClick={() => handleTabClick("category")}>By Category</button>
+          <button className={tab === "type" ? "active" : ""} onClick={() => handleTabClick("type")}>By Project Type</button>
+        </div>
       </div>
+
+      {(tab === "category" || tab === "type") && (
+        <div className="filters">
+          {(tab === "category" ? categories : types).map((item, idx) => {
+            const isActive = filters.includes(item);
+            const color = tab === "category" ? categoryColors[item] || "#ddd" : "#ddd";
+            const bgColor = isActive ? color : "#fff";
+            const textColor = isActive ? "#000" : "#333";
+            const borderColor = isActive ? color : "#ccc";
+
+            return (
+              <button
+                key={idx}
+                className="color-tag"
+                style={{
+                  backgroundColor: bgColor,
+                  color: textColor,
+                  borderColor: borderColor,
+                }}
+                onClick={() => {
+                  setFilters(prev =>
+                    prev.includes(item)
+                      ? prev.filter(f => f !== item)
+                      : [...prev, item]
+                  );
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.target.style.backgroundColor = color;
+                    e.target.style.color = "#000";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.target.style.backgroundColor = "#fff";
+                    e.target.style.color = "#333";
+                  }
+                }}
+              >
+                {item}
+              </button>
+            );
+          })}
+
+
+          {filters.length > 0 && (
+            <button className="clear_button" onClick={() => setFilters([])}>Clear</button>
+          )}
+        </div>
+      )}
+
+      <div className="table">
+        <Header />
+        {filteredProjects.map((proj, idx) => (
+          <Row key={idx} {...proj} onClick={() => handleRowClick(proj)} />
+        ))}
+      </div>
+
+      <Modal isOpen={!!selectedProject} project={selectedProject} onClose={closeModal} />
     </div>
   );
 }

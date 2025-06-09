@@ -3,7 +3,7 @@ import './Row.css';
 import Link from './Link';
 import Label from './Label';
 
-function Row({ projectName, category, description, date , link}) {
+function Row({ projectName, category, description, date , link, onClick}) {
   const categoryColors = {
     "Distributed System": "#cad0eb", 
     "Operating System": "#d1e3c9", 
@@ -15,7 +15,7 @@ function Row({ projectName, category, description, date , link}) {
 
   const backgroundColor = categoryColors[category] || "#dccbce"; 
   return (
-    <div className="row">
+    <div className="row" onClick={onClick}>
       <div className="row-item1"><strong>{projectName}</strong></div>
       <div className="row-item2"><Label text={category} color={backgroundColor}/></div>
       <div className="row-item3">{description}</div>
