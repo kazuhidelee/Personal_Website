@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Project from "./pages/Project";
 import Work from "./pages/Work";
 import Art from "./pages/Art";
+import Palette from "./pages/Palette";
 import Sidebar from "./components/Sidebar";
 import { Routes, Route } from "react-router-dom";
 // import { useEffect } from "react";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/projects" element={<Project />} />
         <Route path="/work" element={<Work />} />
         <Route path="/art" element={<Art />} />
+        <Route path="/palette" element={<Palette />} />
         </Routes>
       </div>
       

@@ -14,13 +14,16 @@ function Row({ projectName, category, description, date , link, onClick}) {
   };
 
   const backgroundColor = categoryColors[category] || "#dccbce"; 
+  const linktext = link === "private" ? "link unavailable" : "link to repo";
   return (
     <div className="row" onClick={onClick}>
       <div className="row-item1"><strong>{projectName}</strong></div>
       <div className="row-item2"><Label text={category} color={backgroundColor}/></div>
       <div className="row-item3">{description}</div>
       <div className="row-item4">{date}</div>
-	    <div className="row-item5"><Link ref={link} text={link}/></div>
+	    <div className="row-item5">
+        <Link ref={link} text={linktext} href={link} />
+      </div>
     </div>
   );
 }

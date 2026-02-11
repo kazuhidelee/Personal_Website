@@ -59,6 +59,11 @@ function Sidebar(){
 					<img src={brush} className="icon" alt="art icon" /> Art Gallery
 				</NavLink>
   			</li>
+			<li>  
+				<NavLink to="/palette" className={({ isActive }) => isActive ? "active" : ""}>
+					<img src={brush} className="icon" alt="palette icon" /> Palette
+				</NavLink>
+  			</li>
 			</ul>
       	</nav> 
 	);
