@@ -15,7 +15,7 @@ app.use(express.json());
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION || 'us-east-1'
+  region: process.env.AWS_REGION || 'us-east-2'
 });
 
 const BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME;
@@ -40,15 +40,22 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
       return res.status(400).json({ error: 'No image file provided' });
     }
 
+    // Get title from request body
+    const title = req.body.title || 'Untitled';
+
     // Generate unique filename
     const fileName = `palette/${Date.now()}-${Math.random().toString(36).substring(7)}.png`;
 
-    // Upload to S3
+    // Upload to S3 with metadata
     const params = {
       Bucket: BUCKET_NAME,
       Key: fileName,
       Body: req.file.buffer,
-      ContentType: 'image/png'// Make images publicly accessible
+      ContentType: 'image/png',
+      Metadata: {
+        title: title,
+        uploadedAt: new Date().toISOString()
+      }
     };
 
     const result = await s3.upload(params).promise();
@@ -56,7 +63,8 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
     res.json({
       success: true,
       url: result.Location,
-      key: fileName
+      key: fileName,
+      title: title
     });
   } catch (error) {
     console.error('Upload error:', error);
@@ -64,7 +72,7 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
   }
 });
 
-// Get all images endpoint (optional - for listing)
+// Get all images endpoint
 app.get('/api/images', async (req, res) => {
   try {
     const params = {
@@ -73,11 +81,60 @@ app.get('/api/images', async (req, res) => {
     };
 
     const result = await s3.listObjectsV2(params).promise();
-    const images = result.Contents.map(item => ({
-      key: item.Key,
-      url: `https://${BUCKET_NAME}.s3.${process.env.AWS_REGION || 'us-east-1'}.amazonaws.com/${item.Key}`,
-      lastModified: item.LastModified
-    }));
+
+    // Filter out the prefix entry itself (palette/) and only process actual files
+    const imageFiles = result.Contents.filter(item =>
+      item.Key !== 'palette/' && item.Key.endsWith('.png')
+    );
+
+    // Fetch metadata for each image
+    const imagesPromises = imageFiles.map(async (item) => {
+      try {
+        // Get object metadata
+        const headParams = {
+          Bucket: BUCKET_NAME,
+          Key: item.Key
+        };
+        const headResult = await s3.headObject(headParams).promise();
+
+        // Construct public URL - use the region from environment or detect from bucket
+        const region = process.env.AWS_REGION || 'us-east-2';
+        // Use path-style URL format which works for all regions
+        // Format: https://s3.region.amazonaws.com/bucket-name/key
+        const url = `https://${BUCKET_NAME}.s3.${region}.amazonaws.com/${item.Key}`;
+
+        return {
+          id: item.ETag ? item.ETag.replace(/"/g, '') : Date.now().toString(),
+          key: item.Key,
+          url: url,
+          // S3 metadata is lowercase and prefixed with 'x-amz-meta-'
+          title: (headResult.Metadata && (headResult.Metadata.title || headResult.Metadata['x-amz-meta-title'])) ?
+            (headResult.Metadata.title || headResult.Metadata['x-amz-meta-title']) : 'Untitled',
+          text: 'A drawing from the palette',
+          alt: 'user drawing',
+          lastModified: item.LastModified
+        };
+      } catch (error) {
+        console.error(`Error fetching metadata for ${item.Key}:`, error);
+        // Return basic info if metadata fetch fails
+        const region = process.env.AWS_REGION || 'us-east-2';
+        const url = `https://s3.${region}.amazonaws.com/${BUCKET_NAME}/${item.Key}`;
+        return {
+          id: item.ETag ? item.ETag.replace(/"/g, '') : Date.now().toString(),
+          key: item.Key,
+          url: url,
+          title: 'Untitled',
+          text: 'A drawing from the palette',
+          alt: 'user drawing',
+          lastModified: item.LastModified
+        };
+      }
+    });
+
+    const images = await Promise.all(imagesPromises);
+
+    // Sort by lastModified (newest first)
+    images.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
 
     res.json({ images });
   } catch (error) {
