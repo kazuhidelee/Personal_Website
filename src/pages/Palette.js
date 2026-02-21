@@ -11,18 +11,63 @@ function Palette() {
 	const [drawings, setDrawings] = useState([]);
 	const [showDrawingCanvas, setShowDrawingCanvas] = useState(false);
 	const [drawingTitle, setDrawingTitle] = useState("");
+	const [isUploading, setIsUploading] = useState(false);
+	const [uploadError, setUploadError] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 
-	// Load drawings from localStorage on mount
+	// API endpoint - update this to your backend URL
+	const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+
+	// Load drawings from S3 on mount
 	useEffect(() => {
-		const savedDrawings = localStorage.getItem('paletteDrawings');
-		if (savedDrawings) {
-			setDrawings(JSON.parse(savedDrawings));
+		const loadDrawings = async () => {
+			setIsLoading(true);
+			try {
+				// Fetch drawings from S3
+				const response = await fetch(`${API_URL}/api/images`);
+				if (response.ok) {
+					const data = await response.json();
+					console.log('Loaded images from S3:', data.images);
+
+					// Convert S3 images to drawing format
+					const s3Drawings = data.images.map((img, index) => ({
+						id: img.key || `s3-${Date.now()}-${index}`, // Use key as unique identifier
+						src: img.url,
+						s3Key: img.key,
+						title: img.title || 'Untitled',
+						text: img.text || 'A drawing from the palette',
+						alt: img.alt || 'user drawing'
+					}));
+
+					// Remove duplicates based on s3Key (primary identifier)
+					const uniqueDrawings = s3Drawings.filter((drawing, index, self) =>
+						index === self.findIndex(d => d.s3Key === drawing.s3Key)
+					);
+
+					console.log('Unique drawings:', uniqueDrawings);
+					setDrawings(uniqueDrawings);
+				} else {
+					console.error('Failed to fetch images:', response.status);
+					setDrawings([]);
+				}
+			} catch (error) {
+				console.error('Error loading drawings:', error);
+				setDrawings([]);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+
+		loadDrawings();
+	}, [API_URL]);
+
+	// Save drawings to localStorage whenever drawings change (for backup only)
+	useEffect(() => {
+		// Only save S3 drawings to localStorage as backup
+		const s3Drawings = drawings.filter(d => d.s3Key);
+		if (s3Drawings.length > 0) {
+			localStorage.setItem('paletteDrawings', JSON.stringify(s3Drawings));
 		}
-	}, []);
-
-	// Save drawings to localStorage whenever drawings change
-	useEffect(() => {
-		localStorage.setItem('paletteDrawings', JSON.stringify(drawings));
 	}, [drawings]);
 
 	// Initialize canvas
@@ -79,22 +124,79 @@ function Palette() {
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 	};
 
-	const saveDrawing = () => {
+	const saveDrawing = async () => {
 		const canvas = canvasRef.current;
-		const dataURL = canvas.toDataURL('image/png');
+		setIsUploading(true);
+		setUploadError(null);
 
-		const newDrawing = {
-			id: Date.now(),
-			src: dataURL,
-			title: drawingTitle || "Untitled",
-			text: "A drawing from the palette",
-			alt: "user drawing"
-		};
+		try {
+			// Convert canvas to blob
+			canvas.toBlob(async (blob) => {
+				if (!blob) {
+					setUploadError('Failed to create image');
+					setIsUploading(false);
+					return;
+				}
 
-		setDrawings([...drawings, newDrawing]);
-		clearCanvas();
-		setDrawingTitle("");
-		setShowDrawingCanvas(false);
+				// Create FormData
+				const formData = new FormData();
+				formData.append('image', blob, 'drawing.png');
+				formData.append('title', drawingTitle || 'Untitled');
+
+				// Upload to backend
+				const response = await fetch(`${API_URL}/api/upload`, {
+					method: 'POST',
+					body: formData
+				});
+
+				if (!response.ok) {
+					const errorData = await response.json();
+					throw new Error(errorData.error || 'Upload failed');
+				}
+
+				const result = await response.json();
+				console.log('Upload result:', result);
+
+				// Create new drawing with S3 URL
+				const newDrawing = {
+					id: result.key, // Use S3 key as unique ID
+					src: result.url,
+					s3Key: result.key,
+					title: result.title || drawingTitle || "Untitled",
+					text: "A drawing from the palette",
+					alt: "user drawing"
+				};
+
+				// Check if drawing already exists (prevent duplicates)
+				const exists = drawings.some(d => d.s3Key === result.key);
+				if (!exists) {
+					setDrawings([...drawings, newDrawing]);
+				}
+				clearCanvas();
+				setDrawingTitle("");
+				setShowDrawingCanvas(false);
+				setIsUploading(false);
+			}, 'image/png');
+		} catch (error) {
+			console.error('Upload error:', error);
+			setUploadError(error.message || 'Failed to upload image. Using local storage as fallback.');
+
+			// Fallback to localStorage if upload fails
+			const dataURL = canvas.toDataURL('image/png');
+			const newDrawing = {
+				id: Date.now(),
+				src: dataURL,
+				title: drawingTitle || "Untitled",
+				text: "A drawing from the palette",
+				alt: "user drawing"
+			};
+
+			setDrawings([...drawings, newDrawing]);
+			clearCanvas();
+			setDrawingTitle("");
+			setShowDrawingCanvas(false);
+			setIsUploading(false);
+		}
 	};
 
 	const cancelDrawing = () => {
@@ -125,15 +227,21 @@ function Palette() {
 				<div className="polaroid add-polaroid" onClick={() => setShowDrawingCanvas(true)}>
 					<div className="add-icon">+</div>
 				</div>
-				{drawings.map((drawing) => (
-					<Polaroid
-						key={drawing.id}
-						src={drawing.src}
-						alt={drawing.alt}
-						title={drawing.title}
-						text={drawing.text}
-					/>
-				))}
+				{isLoading ? (
+					<p className="loading-text">Loading drawings...</p>
+				) : drawings.length === 0 ? (
+					<p className="no-drawings">No drawings yet. Start creating!</p>
+				) : (
+					drawings.map((drawing) => (
+						<Polaroid
+							key={drawing.id || drawing.s3Key}
+							src={drawing.src}
+							alt={drawing.alt}
+							title={drawing.title}
+							text={drawing.text}
+						/>
+					))
+				)}
 			</div>
 
 			{showDrawingCanvas && (
@@ -161,8 +269,10 @@ function Palette() {
 									onChange={(e) => setBrushSize(parseInt(e.target.value))}
 								/>
 							</div>
-							<button className="canvas-btn" onClick={clearCanvas}>Clear</button>
-							<button className="canvas-btn save-btn" onClick={saveDrawing}>Save</button>
+							<button className="canvas-btn" onClick={clearCanvas} disabled={isUploading}>Clear</button>
+							<button className="canvas-btn save-btn" onClick={saveDrawing} disabled={isUploading}>
+								{isUploading ? 'Uploading...' : 'Save'}
+							</button>
 						</div>
 						<div className="title-input-container">
 							<input
@@ -171,8 +281,14 @@ function Palette() {
 								value={drawingTitle}
 								onChange={(e) => setDrawingTitle(e.target.value)}
 								className="drawing-title-input"
+								disabled={isUploading}
 							/>
 						</div>
+						{uploadError && (
+							<div className="upload-error">
+								{uploadError}
+							</div>
+						)}
 						<div className="drawing-canvas-wrapper">
 							<canvas
 								ref={canvasRef}

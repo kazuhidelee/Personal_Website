@@ -1,0 +1,235 @@
+.landing {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(160deg, #f8f6f3 0%, #e8eef4 50%, #f0ebe6 100%);
+}
+
+.landing-hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease;
+}
+
+.landing-hero:hover {
+  transform: scale(1.02);
+}
+
+.landing-hero:focus-visible {
+  outline: 2px solid #03274b;
+  outline-offset: 8px;
+  border-radius: 50%;
+}
+
+.landing-headshot {
+  width: clamp(180px, 28vw, 280px);
+  height: clamp(180px, 28vw, 280px);
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow:
+    0 20px 50px rgba(3, 39, 75, 0.15),
+    0 0 0 4px rgba(255, 255, 255, 0.9);
+  transition: box-shadow 0.3s ease;
+}
+
+.landing-hero:hover .landing-headshot {
+  box-shadow:
+    0 24px 56px rgba(3, 39, 75, 0.2),
+    0 0 0 6px rgba(255, 255, 255, 0.95);
+}
+
+.landing-cta {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #03274b;
+  opacity: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.landing-orbit {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.landing-orbit .landing-nav-icon {
+  pointer-events: auto;
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: #03274b;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.landing:has(.landing-hero:hover) .landing-nav-icon {
+  animation: icon-float 3.5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+.landing:has(.landing-hero:hover) .landing-nav-icon:hover {
+  animation: none;
+}
+
+@keyframes icon-float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+  25% {
+    transform: translate(-50%, -50%) translate(10px, -12px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translate(0, -18px);
+  }
+  75% {
+    transform: translate(-50%, -50%) translate(-10px, -12px);
+  }
+}
+
+.landing-orbit .landing-nav-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.landing-orbit .landing-nav-icon:hover {
+  box-shadow: 0 12px 32px rgba(3, 39, 75, 0.15);
+  background: #f0f4f8;
+}
+
+.landing-nav-label {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.landing-orbit .landing-nav-icon:hover .landing-nav-label {
+  opacity: 1;
+}
+
+.landing-title {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  text-align: center;
+}
+
+.landing-title h1 {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: #03274b;
+  letter-spacing: 0.02em;
+}
+
+.landing-title p {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: #5a6b7a;
+}
+
+/* Fallback positioning for orbit icons using explicit angles (no cos/sin in CSS) */
+.landing-orbit .landing-nav-icon:nth-child(1) {
+  left: 50%;
+  top: calc(50% - min(42vw, 320px));
+  transform: translate(-50%, -50%);
+}
+.landing-orbit .landing-nav-icon:nth-child(1):hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.landing-orbit .landing-nav-icon:nth-child(2) {
+  left: calc(50% + min(42vw, 320px) * 0.95);
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.landing-orbit .landing-nav-icon:nth-child(2):hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.landing-orbit .landing-nav-icon:nth-child(3) {
+  left: 50%;
+  top: calc(50% + min(42vw, 320px));
+  transform: translate(-50%, -50%);
+}
+.landing-orbit .landing-nav-icon:nth-child(3):hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.landing-orbit .landing-nav-icon:nth-child(4) {
+  left: calc(50% - min(42vw, 320px) * 0.59);
+  top: calc(50% - min(42vw, 320px) * 0.81);
+  transform: translate(-50%, -50%);
+}
+.landing-orbit .landing-nav-icon:nth-child(4):hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.landing-orbit .landing-nav-icon:nth-child(5) {
+  left: calc(50% - min(42vw, 320px) * 0.59);
+  top: calc(50% + min(42vw, 320px) * 0.81);
+  transform: translate(-50%, -50%);
+}
+.landing-orbit .landing-nav-icon:nth-child(5):hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.landing-orbit .landing-nav-icon:nth-child(1) .landing-nav-label {
+  top: auto;
+  bottom: 100%;
+  margin-bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+}
+.landing-orbit .landing-nav-icon:nth-child(2) .landing-nav-label {
+  left: 100%;
+  top: 50%;
+  margin-left: 12px;
+  transform: translateY(-50%);
+}
+.landing-orbit .landing-nav-icon:nth-child(3) .landing-nav-label {
+  top: 100%;
+  margin-top: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+.landing-orbit .landing-nav-icon:nth-child(4) .landing-nav-label {
+  right: 100%;
+  left: auto;
+  top: 50%;
+  margin-right: 12px;
+  transform: translateY(-50%);
+}
+.landing-orbit .landing-nav-icon:nth-child(5) .landing-nav-label {
+  right: 100%;
+  left: auto;
+  top: 50%;
+  margin-right: 12px;
+  transform: translateY(-50%);
+}

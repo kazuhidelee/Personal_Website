@@ -22,7 +22,11 @@ function Sidebar(){
 	return (
 		<nav className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
 			<div className="sidebar-logo">
-				{!isCollapsed && <span>Tony's Portfolio</span>}
+				{!isCollapsed && (
+					<NavLink to="/" className="sidebar-logo-link">
+						Tony's Portfolio
+					</NavLink>
+				)}
 				<button 
 					className="toggle-btn" 
 					onClick={handleToggle}
@@ -40,7 +44,7 @@ function Sidebar(){
 			</div>
 			<ul className={`sidebar-menu ${isCollapsed ? "collapsed" : ""}`}>
 			<li>  
-				<NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
+				<NavLink to="/profile" className={({ isActive }) => isActive ? "active" : ""}>
 					<img src={home} className="icon" alt="home icon" /> Home
 				</NavLink>
   			</li>
